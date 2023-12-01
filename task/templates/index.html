@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+<script>
+    $(document).ready(function() {
+        $(".intro").css("transform", "translateY(0)");
+    });
+</script>
+<h2 class="intro" style="transform: translateY(-100%); transition: ease-in-out 1s">Task setter</h2>
+{% endblock %}
+
+{% block content %}
+<script>
+    $(document).ready(function() {
+        $(".animatted-button").css("transform", "translateY(0)");
+    });
+</script>
+<div class="content">
+    <h1 class="center">{{ self.title() }} </h1>
+
+    {% if tasks|length < 1 %}
+    <h4 class="center">Задач нет. Создайте задачу ниже!</h4>
+
+    {% else %}
+    <div class="block">
+        <div class="head">Task</div>
+        <div class="head">Time</div>
+        <div class="head">Delete</div>
+        <div class="head">Update</div>
+
+        {% for task in tasks %}
+        <div class="text">{{ task.content }}</div>
+        <div>{{task.date_created.date()}}</div>
+        <div> <a  class="del" href="/delete/{{ task.id }}">Deleted</a></div>
+        <div><a class="up" href="/update/{{task.id}}">Update</a></div>
+        {% endfor %}
+    </div>
+
+    {% endif %}
+
+    <div class="form">
+        <form action="/" method="post">
+            <input type="text" name="content" id="content">
+            <input class="animatted-button" style="transform: translateY(100%); transition: ease-in-out 1s" type="submit" value="Add Task">
+
+        </form>
+    </div>
+</div>
+{% endblock %}

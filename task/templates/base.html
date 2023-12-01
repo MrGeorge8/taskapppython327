@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("body").css("opacity", "1");
+    });
+</script>
+</head>
+<body style="opacity:0; transition: ease-in-out 0.4s">
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
